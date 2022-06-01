@@ -25,10 +25,10 @@ export const ADD_USER = gql`
   }
 `;
 
-//update to book mutations
+//update to book mutations with API routes
 export const SAVE_BOOK = gql`
-  mutation saveBook($input: BookInput!) {
-    saveBook(input: $input) {
+  mutation saveBook($bookData: BookData!) {
+    saveBook(bookData: $bookData) {
       _id
       username
       email
