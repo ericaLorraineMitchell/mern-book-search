@@ -1,21 +1,17 @@
-const { School, Class, Professor } = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
+const { User } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    schools: async () => {
-      return await School.find({}).populate('classes').populate({
-        path: 'classes',
-        populate: 'professor'
-      });
-    },
-    classes: async () => {
-      return await Class.find({}).populate('professor');
-    },
-    professors: async () => {
-      // Populate the classes subdocument on every instance of Professor
-      return await Professor.find({}).populate('classes');
-    }
-  }
-};
+    me: async () => {
+        const userData = await User.findOne(
+            { _id: user._id });
+            return userData;
+          },
+          throw : Authentication ('you are not logged in')
+        }
+    };
+   
 
 module.exports = resolvers;
